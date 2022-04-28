@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Admin user\",\n    \"username\": \"admin\",\n    \"email\": \"admin.gopronto@gmail.com\",\n    \"password\": \"simplePassword\",\n    \"role\": \"admin\"\n}",
+					"raw": "{\n    \"name\": \"BrianJ Kim\",\n    \"username\": \"jiwoone\",\n    \"email\": \"jiwoone@gmail.com\",\n    \"password\" : \"love12\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,13 +83,13 @@
 			"response": []
 		},
 		{
-			"name": "Edit a user",
+			"name": "Update single user",
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Nalynn Kim\",\n    \"username\": \"nalynn\"\n}",
+					"raw": "{\n    \"name\": \"Brian Jiwoun Kim\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,7 +97,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/10",
+					"raw": "http://localhost:3000/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -105,14 +105,14 @@
 					"port": "3000",
 					"path": [
 						"users",
-						"10"
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get a user info",
+			"name": "Get single user",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -191,19 +191,28 @@
 			"response": []
 		},
 		{
-			"name": "Get one user",
+			"name": "Login Method",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jiwoone@gmail.com\",\n    \"password\": \"love12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:3000/users/3",
+					"raw": "localhost:3000/users/login",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"users",
-						"3"
+						"login"
 					]
 				}
 			},
