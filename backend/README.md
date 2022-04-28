@@ -2,7 +2,20 @@
 
 # Backend
 
-Backend repository of the gopronto-admin project. Pleaser refer for the .env setting from the project README.md.
+Backend repository of the gopronto-admin project.
+
+## Instructions to run the backend
+1. Add an environment file(.env) to the backend(gopronto-admin/backend/)
+  - add your own database credentials in the .env file
+  - add your own JWT_SECRET in the .env file
+
+Example of file:
+
+    DATABASE_USER=<your database id>
+    DATABASE_PASSWORD=<your database password>
+    DATABASE_NAME=<your database name>
+    DATABASE_PORT=<your database port>
+    DATABASE_HOST=<your database address>
 
 ## Installation
 
