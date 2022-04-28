@@ -17,6 +17,8 @@ Example of file:
     DATABASE_PORT=<your database port>
     DATABASE_HOST=<your database address>
 
+    JWT_SECRET=<some long string combined with numbers and sepcial characters>
+
 ## Installation
 
 ```bash
