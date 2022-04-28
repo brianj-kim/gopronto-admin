@@ -2,7 +2,7 @@
 
 # Backend
 
-Backend repository of the gopronto-admin project
+Backend repository of the gopronto-admin project. Pleaser refer for the .env setting from the project README.md.
 
 ## Installation
 
