@@ -34,14 +34,14 @@
 			"response": []
 		},
 		{
-			"name": "Get all the user info",
+			"name": "Get all users",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMiwibmFtZSI6IkFkbWluIHVzZXIiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbi5nb3Byb250b0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjUxMDgyOTAyLCJleHAiOjE2NTEwODM5MDJ9.YiYXf6Y9TJ-7qUHHBFvyU5gR6u9ic8dO-c3vpx18Nak",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiQnJpYW4gSml3b3VuIEtpbSIsInVzZXJuYW1lIjoiaml3b29uZSIsImVtYWlsIjoiaml3b29uZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjUxMTgzOTU5LCJleHAiOjE2NTExODQ5NTl9.Oe0yr1wpeR7fH0hBLzLhLLGPYJkfVq9wflf_yMCOVHU",
 							"type": "string"
 						}
 					]
@@ -213,6 +213,36 @@
 					"path": [
 						"users",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update role of user",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"role\": \"editor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/2/role",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"2",
+						"role"
 					]
 				}
 			},
