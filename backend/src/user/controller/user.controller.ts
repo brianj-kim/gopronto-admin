@@ -29,7 +29,7 @@ export class UserController {
     );
   }
 
-  @Post('login')
+  @Post('signin')
   login(@Body() user: User): Observable<Record<string, unknown>> {
     return this.userService.login(user).pipe(
       map((jwt: string) => {
