@@ -7,7 +7,7 @@
           <label for="name" class="block text-base text-gray-800">Full Name</label>
           <input
             type="text" 
-            class="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40" 
+            class="block w-full px-4 py-2 mt-2 text-indigo-900 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40" 
             [ngClass]="{'border-orange-700 focus:border-orange-700': signupForm.get('name')?.errors}"
             formControlName="name"
           />
@@ -24,7 +24,7 @@
             <input 
               formControlName="username"
               type="text"
-              class="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              class="block w-full px-4 py-2 mt-2 text-indigo-900 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               [ngClass]="{'border-orange-700 focus:border-orange-700': signupForm.get('username')?.errors}"
             />
             <div 
@@ -43,7 +43,7 @@
             <input 
               formControlName="email"
               type="email"
-              class="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              class="block w-full px-4 py-2 mt-2 text-indigo-900 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               [ngClass]="{'border-orange-700 focus:border-orange-700': signupForm.get('email')?.errors}"
             />
             <div 
@@ -61,11 +61,11 @@
             <input 
               formControlName="password"
               type="password"
-              class="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              [ngClass]="{'border-orange-700 focus:border-orange-700': signupForm.get('password')?.errors}"
+              class="block w-full px-4 py-2 mt-2 text-indigo-900 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              [ngClass]="{'border-orange-700 focus:border-orange-700': signupForm.get('password')?.hasError('passwordInvalid')}"
             />
             <div 
-              *ngIf="signupForm.get('password')?.errors"
+              *ngIf="signupForm.get('password')?.hasError('passwordInvalid')"
               class="text-xs text-orange-700 pl-1"
             >
               Password is required
@@ -75,15 +75,15 @@
 
         <div class="mt-4">
           <div>
-            <label for="passwordConfirm" class="block text-base text-gray-800" >Confirm your password</label>
+            <label for="confirmPassword" class="block text-base text-gray-800" >Password Confirmation</label>
             <input 
-              formControlName="passwordConfirm"
+              formControlName="confirmPassword"
               type="password"
-              class="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              [ngClass]="{'border-orange-700 focus:border-orange-700': signupForm.get('passwordConfirm')?.errors}"
+              class="block w-full px-4 py-2 mt-2 text-indigo-900 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              [ngClass]="{'border-orange-700 focus:border-orange-700': signupForm.hasError('passwordsNotMatching')}"
             />
             <div 
-              *ngIf="signupForm.get('passwordConfirm')?.errors"
+              *ngIf="signupForm.hasError('passwordsNotMatching')"
               class="text-xs text-orange-700 pl-1"
             >
               PasswordConfirm is required
@@ -102,9 +102,30 @@
         </div>
 
       </form>
+    
+      <p 
+        *ngIf="signupForm.invalid"
+        class="mt-4 text-orange-700 font-thin text-sm"
+      >
+        Form contains following errors:
+      </p>
+      <p 
+        *ngIf="signupForm.get('password')?.hasError('passwordInvalid')"
+        class="text-orange-700 font-thin  text-sm pl-4"
+      >
+        - Password is not containing a number
+      </p>
+
+      <p 
+        *ngIf="signupForm.hasError('passwordsNotMatching')"
+        class="text-orange-700 font-thin  text-sm pl-4"
+      >
+        - Password is not matching
+      </p>
+
       <p class="mt-8 text-sm font-light text-center text-gray-700"> 
-        Don't have an account? 
-        <a href="#" class="font-medium text-indigo-600 hover:underline">Sign up</a>
+        Already have an account? 
+        <a routerLink="/signin" class="font-medium text-indigo-600 hover:underline">Sign in</a>
       </p>
 
   </div>
