@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, pipe } from 'rxjs';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
 
 class CustomValidators {
   static passwordContainsNumbers(control: AbstractControl): ValidationErrors {
