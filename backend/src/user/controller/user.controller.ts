@@ -29,7 +29,7 @@ export class UserController {
     );
   }
 
-  @Post('login')
+  @Post('signin')
   login(@Body() user: User): Observable<Record<string, unknown>> {
     return this.userService.login(user).pipe(
       map((jwt: string) => {
@@ -47,14 +47,27 @@ export class UserController {
   index(
     @Query('page') page = 1,
     @Query('limit') limit = 10,
+    @Query('username') username: string,
   ): Observable<Pagination<User>> {
     limit = limit > 100 ? 100 : limit;
+    // console.log(username);
 
-    return this.userService.paginate({
-      page: Number(page),
-      limit: Number(limit),
-      route: 'http://localhost:3000/users',
-    });
+    if (username === null || username === undefined) {
+      return this.userService.paginate({
+        page: Number(page),
+        limit: Number(limit),
+        route: 'http://localhost:3000/users',
+      });
+    }
+
+    return this.userService.paginateFilterByUsername(
+      {
+        page: Number(page),
+        limit: Number(limit),
+        route: 'http://localhost:3000/users',
+      },
+      { username },
+    );
   }
 
   // @hasRoles(UserRole.ADMIN)

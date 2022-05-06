@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {
@@ -9,12 +10,16 @@ const routes: Routes = [
   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'signin',
+    component: SigninComponent
   },
   {
-    path: 'register',
-    component: RegisterComponent
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
   }
 ];
 
