@@ -4,6 +4,7 @@ A fullstack restaurant's backoffice web application with NestJS and AngularJS
 ## Switch to branch dev to get the latest changes
 
 
+
 ### Start the backend in dev branch after you added .env file
 
 `cd backend`
@@ -30,3 +31,4 @@ A fullstack restaurant's backoffice web application with NestJS and AngularJS
 `yarn`
 
 `yarn cypress:open`
+
