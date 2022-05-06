@@ -11,7 +11,8 @@ export class UsersComponent implements OnInit {
 
   dataSource: UserData = null!;
   pageSize: number = 10;
-  pageSizeOptions: number[] = [this.pageSize, 20,30,40,50,100];;
+  pageSizeOptions: number[] = [this.pageSize, 20,30,40,50,100];
+  filterValue: string = null!;
 
   constructor(private userService: UserService) { }
 
@@ -27,9 +28,17 @@ export class UsersComponent implements OnInit {
   }
 
   onPageChange(page: number){
-    this.userService.findAll(page, this.pageSize).pipe(
-      map((userData: UserData) => this.dataSource = userData)
-    ).subscribe();
+    if(this.filterValue == null) {
+      page = page + 1;
+      this.userService.findAll(page, this.pageSize).pipe(
+        map((userData: UserData) => this.dataSource = userData)
+      ).subscribe();
+    }
+
+    this.userService.paginateByName(page, this.pageSize, this.filterValue).pipe(
+      map((userData: any) => this.dataSource = userData)
+    ).subscribe()
+    
   }
 
   onPageSizeChange(e: any) {
@@ -40,4 +49,12 @@ export class UsersComponent implements OnInit {
     ).subscribe();
 
   }
+
+  findByName(username: string) {
+    console.log(username);
+    this.userService.paginateByName(0,10, username).pipe(
+      map((userData: any) => this.dataSource = userData)
+    ).subscribe()
+  }
+
 }
