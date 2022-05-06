@@ -48,7 +48,7 @@ export class UserService {
 
     return this.http.get('/backend/users', { params }).pipe(
       map((userData: any) => userData),
-      catchError(err => throwError(() => new Error(err)))
+        catchError(err => throwError(() => new Error(err)))
     )
   }
 }

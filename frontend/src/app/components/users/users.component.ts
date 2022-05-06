@@ -22,23 +22,32 @@ export class UsersComponent implements OnInit {
 
   initDataSource() {
     this.userService.findAll(1, this.pageSize).pipe(
-      //tap(users => console.log(users)),
+      // tap(users => console.log(users)),
       map((userData: UserData) => this.dataSource = userData)
     ).subscribe();
   }
 
   onPageChange(page: number){
+    // console.log(page, this.pageSize);
     if(this.filterValue == null) {
-      page = page + 1;
-      this.userService.findAll(page, this.pageSize).pipe(
-        map((userData: UserData) => this.dataSource = userData)
-      ).subscribe();
-    }
+      // console.log(page, this.pageSize);
 
-    this.userService.paginateByName(page, this.pageSize, this.filterValue).pipe(
-      map((userData: any) => this.dataSource = userData)
-    ).subscribe()
-    
+      this.userService.findAll(page, this.pageSize).pipe(
+        map((userData: UserData) => {
+          // console.log(userData);
+          this.dataSource = userData;
+        })
+      ).subscribe();
+    } else {
+      page = page - 1;
+      this.userService.paginateByName(page, this.pageSize, this.filterValue).pipe(
+        map((userData: any) => {
+          userData.meta.currentPage = page + 1;
+          // console.log(userData.meta.currentPage);
+          this.dataSource = userData
+        })
+      ).subscribe()
+    }    
   }
 
   onPageSizeChange(e: any) {
@@ -51,7 +60,7 @@ export class UsersComponent implements OnInit {
   }
 
   findByName(username: string) {
-    console.log(username);
+    // console.log(username);
     this.userService.paginateByName(0,10, username).pipe(
       map((userData: any) => this.dataSource = userData)
     ).subscribe()
