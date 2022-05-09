@@ -25,6 +25,7 @@ import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { join } from 'path';
+import { UserIsUserGuard } from 'src/auth/guards/UserIsUser.guard';
 
 const storage = {
   storage: diskStorage({
@@ -78,7 +79,7 @@ export class UserController {
       return this.userService.paginate({
         page: Number(page),
         limit: Number(limit),
-        route: 'http://localhost:3000/users',
+        route: 'http://localhost:3000/backend/users',
       });
     }
 
@@ -86,7 +87,7 @@ export class UserController {
       {
         page: Number(page),
         limit: Number(limit),
-        route: 'http://localhost:3000/users',
+        route: 'http://localhost:3000/backend/users',
       },
       { username },
     );
@@ -104,6 +105,7 @@ export class UserController {
     return this.userService.deleteOne(Number(id));
   }
 
+  @UseGuards(JwtAuthGuard, UserIsUserGuard)
   @Patch(':id')
   updateOne(@Param('id') id: string, @Body() user: User) {
     return this.userService.updateOne(Number(id), user);

@@ -49,7 +49,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users",
+					"raw": "http://localhost:3000/users?limit=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -57,6 +57,12 @@
 					"port": "3000",
 					"path": [
 						"users"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						}
 					]
 				}
 			},
@@ -85,11 +91,21 @@
 		{
 			"name": "Update single user",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJuYW1lIjoiTmFseW5uIEtpbSIsInVzZXJuYW1lIjoibmFseW5uIiwiZW1haWwiOiJuYWx5bm4ua2ltQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwicHJvZmlsZUltYWdlIjpudWxsfSwiaWF0IjoxNjUyMTIyOTI5LCJleHAiOjE2NTIxMjM5Mjl9.yCczLhldYRGFb5MJDy1O0JCnLp_3Wh-7Md_g2ocwZzU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Brian Jiwoun Kim\"\n}",
+					"raw": "{\n    \"name\": \"Suleye Kim\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,15 +113,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/1",
+					"raw": "http://localhost:3000/backend/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"backend",
 						"users",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -138,7 +155,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"admin.gopronto@gmail.com\",\n    \"password\": \"simplePassword\"\n}",
+					"raw": "{\n    \"email\": \"nalynn.kim@gmail.com\",\n    \"password\": \"love12\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,15 +163,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/login",
+					"raw": "http://localhost:3000/backend/users/signin",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"backend",
 						"users",
-						"login"
+						"signin"
 					]
 				}
 			},
@@ -221,11 +239,21 @@
 		{
 			"name": "Update role of user",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiQnJpYW4gSml3b3VuIEtpbSIsInVzZXJuYW1lIjoiaml3b29uZSIsImVtYWlsIjoiaml3b29uZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjUxMTg0NjA4LCJleHAiOjE2NTExODU2MDh9.WPHOk461GkMFhfASHyyfeaaH-Stb4qCaN1reDwBV7Ks",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role\": \"editor\"\n}",
+					"raw": "{\n    \"role\": \"user\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -233,16 +261,80 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/2/role",
+					"raw": "http://localhost:3000/backend/users/2/role",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"backend",
 						"users",
 						"2",
 						"role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Profile image and jwt",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiQnJpYW5KIEtpbSIsInVzZXJuYW1lIjoiYnJpYW5qa2ltIiwiZW1haWwiOiJicmlhbmpraW0uZGV2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsInByb2ZpbGVJbWFnZSI6bnVsbH0sImlhdCI6MTY1MjExODkwNiwiZXhwIjoxNjUyMTE5OTA2fQ.UDbTl3-AjDfF_1C4cITxi-rtombuF2Xu1o1egNKwYCw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/brian/Desktop/AvatarPNG.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/backend/users/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"backend",
+						"users",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download Profile Image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/backend/users/profile-image/AvatarPNG18e90ff4-919c-4644-ab5a-e607f44ea8be.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"backend",
+						"users",
+						"profile-image",
+						"AvatarPNG18e90ff4-919c-4644-ab5a-e607f44ea8be.png"
 					]
 				}
 			},
