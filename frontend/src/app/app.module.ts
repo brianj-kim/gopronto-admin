@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     SignupComponent,
     ClickOutsideDirective,
     UsersComponent,
-    UpdateUserProfileComponent
+    UpdateUserProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

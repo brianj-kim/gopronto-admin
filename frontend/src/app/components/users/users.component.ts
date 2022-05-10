@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap } from 'rxjs';
+import { User } from 'src/app/services/authentication-service/authentication.service';
 import { UserData, UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class UsersComponent implements OnInit {
   pageSizeOptions: number[] = [this.pageSize, 20,30,40,50,100];
   filterValue: string = null!;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initDataSource();
@@ -64,6 +66,10 @@ export class UsersComponent implements OnInit {
     this.userService.paginateByName(0,10, username).pipe(
       map((userData: any) => this.dataSource = userData)
     ).subscribe()
+  }
+
+  navigateToProfile(id: any) {
+    this.router.navigate(['./' + id], { relativeTo: this.activatedRoute });
   }
 
 }
