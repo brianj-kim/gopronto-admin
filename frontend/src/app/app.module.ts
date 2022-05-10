@@ -5,11 +5,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClickOutsideDirective } from 'src/clickOuside.directive';
 import { UsersComponent } from './components/users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SigninComponent,
     SignupComponent,
     ClickOutsideDirective,
-    UsersComponent
+    UsersComponent,
+    UpdateUserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +30,18 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,    
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
   ],
-  providers: [],
+  providers: [
+    JwtHelperService, 
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
