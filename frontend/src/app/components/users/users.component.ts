@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, tap } from 'rxjs';
-import { User } from 'src/app/services/authentication-service/authentication.service';
+import { map } from 'rxjs';
 import { UserData, UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
@@ -68,7 +67,7 @@ export class UsersComponent implements OnInit {
     ).subscribe()
   }
 
-  navigateToProfile(id: any) {
+  navigateToProfile(id: number | undefined) {
     this.router.navigate(['./' + id], { relativeTo: this.activatedRoute });
   }
 

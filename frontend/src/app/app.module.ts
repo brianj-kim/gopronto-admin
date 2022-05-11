@@ -41,7 +41,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
-      multi: true,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@
 
     <div class="border-t border-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <div class="w-full flex items-center">
-          <img src="http://localhost:3000/backend/users/profile-image/{{user.profileImage}}" class="inline-block h-28 w-28 rounded-full" />
+          <img *ngIf="user.profileImage !== null" src="http://localhost:3000/backend/users/profile-image/{{ user.profileImage }}" class="inline-block w-28 rounded-full" />
           
           <div class="w-full flex flex-col" >
             <div class="w-full flex">

@@ -27,10 +27,15 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  findOne(id: number): Observable<User> {
+  findOne(id: any): Observable<User> {
     return this.http.get('/backend/users/' + id).pipe(
-      map((user:User) => user)
+      map((user: User) => user),
+      catchError(err => throwError(() => new Error(err)))
     )
+  }
+
+  updateOne(user: User): Observable<User> {    
+    return this.http.patch('/backend/users/' + user.id, user);
   }
 
   findAll(page: number, size: number): Observable<UserData> {
@@ -39,7 +44,7 @@ export class UserService {
     params = params.append('page', String(page));
     params = params.append('limit', String(size));
     
-    return this.http.get('/backend/users', { params }).pipe(
+    return this.http.get('backend/users', { params }).pipe(
       map((userData: any) => userData),
       catchError(err => throwError(() => new Error(err)))
     )

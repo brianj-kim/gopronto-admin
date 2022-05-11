@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 export interface SigninForm {
   email: string;
@@ -37,7 +37,7 @@ export class AuthenticationService {
   signin(signinForm: SigninForm) {
     return this.http.post<any>('backend/users/signin', { email: signinForm.email, password: signinForm.password }).pipe(
       map((token) => {
-        console.log(token);
+        // console.log(token);
         localStorage.setItem(JWT_NAME, token.access_token);
         return token;
       })
@@ -45,7 +45,17 @@ export class AuthenticationService {
   }
 
   isAuthenticated(): boolean {
-    const token: any = localStorage.getItem(JWT_NAME);
+    const token: string | any = localStorage.getItem(JWT_NAME);
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  getUserId(): Observable<number> {
+    return of(localStorage.getItem(JWT_NAME)).pipe(
+      switchMap((jwt: string | any) => of(this.jwtHelper.decodeToken(jwt)).pipe(
+        tap((jwt) => console.log(jwt)),
+        map((jwt: string | any) => jwt.user.id)
+      )
+      
+    ));
   }
 }

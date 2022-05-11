@@ -30,7 +30,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 }

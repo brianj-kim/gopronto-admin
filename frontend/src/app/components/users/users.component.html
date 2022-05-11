@@ -1,114 +1,122 @@
-<h1 class="w-full text-center mt-3 text-lg text-indigo-800 font-semibold">All Users</h1>
+<div class="w-full h-full bg-gray-100">
+  <div class="w-5/6 flex flex-col justify-center items-center mx-auto">
+    <h1 class="w-full text-center mt-3 text-lg text-indigo-800 font-semibold">All Users</h1>
 
-<div class="w-full flex flex-nowrap flex-col mx-auto px-6 pt-3">
-  <div class="w-full flex justify-start pb-3" >
-    <input
-      class="p-2 border rounded-md border-indigo-400 focus:border focus:rounded-md focus:border-indigo-400"
-      type="text"
-      placeholder="Search by username"
-      [(ngModel)]="filterValue"
-      (input)="findByName(filterValue)"
-    />
-    
-  </div>
-
-  <div *ngIf="dataSource" class="border-b border-indigo-200 shadow rounded-md overflow-hidden">
-    <table class="w-full table-auto text-left text-base">
-        <thead class="bg-indigo-100 text-indigo-700 py-4">
-            <tr>
-                <th class="px-6 py-4 font-medium">
-                    id
-                </th> 
-                <th class="px-6 py-4 font-medium">
-                  name
-              </th> 
-              <th class="px-6 py-4 font-medium">
-                username
-              </th>
-              <th class="px-6 py-4 font-medium">
-                email
-              </th>
-              <th class="px-6 py-4 font-medium">
-                role
-              </th>                        
-            </tr>
-        </thead>
-        <tbody class="bg-white">
-            
-          <tr 
-            *ngFor="let row of dataSource.items | paginate : {
-              itemsPerPage: dataSource.meta.itemsPerPage,
-              currentPage: dataSource.meta.currentPage,
-              totalItems: dataSource.meta.totalItems
-            }" 
-            class="whitespace-nowrap hover:bg-indigo-50"
-            (click)="navigateToProfile(row.id)"
-          >
-                <td class="px-6 py-4 ">
-                  {{ row.id }}
-                </td>
-                <td class="px-6 py-4">                        
-                  {{ row.name }}
-                </td>
-                <td class="px-6 py-4">                        
-                  {{ row.username }}                    
-                </td>
-                <td class="px-6 py-4">
-                    {{ row.email }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ row.role }}
-                </td>
-            </tr>
-        </tbody>
-    </table>        
-  </div>
-  <div class="text-right py-2 flex justify-end">
-    <div class="pl-3">
-      <span class="text-sm text-gray-600">page size:</span> 
-      
-      <select (change)="onPageSizeChange($event)" class="text-sm text-gray-600">
-        <option *ngFor="let size of pageSizeOptions">{{ size }}</option>
-      </select>
+    <div class="w-full flex flex-nowrap flex-col mx-auto px-6 pt-3">
+      <div class="w-full flex justify-start pb-3" >
+        <input
+          class="p-2 border rounded-md border-indigo-400 focus:border focus:rounded-md focus:border-indigo-400"
+          type="text"
+          placeholder="Search by username"
+          [(ngModel)]="filterValue"
+          (input)="findByName(filterValue)"
+        />
+        
       </div>
 
-    <pagination-template 
-      #p="paginationApi"
-      (pageChange)="onPageChange($event)"
-      class="flex justify-end items-baseline"
-    >
-
-      <div 
-        class="px-2 cursor-pointer text-base font-medium text-indigo-500" 
-        [class.disabled]="p.isFirstPage()"
-      >
-          <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> < </a>
+      <div *ngIf="dataSource" class="border-b border-indigo-200 shadow rounded-md overflow-hidden">
+        <table class="w-full table-auto text-left text-base">
+            <thead class="bg-indigo-100 text-indigo-700 py-4">
+                <tr>
+                    <th class="px-6 py-4 font-medium">
+                        id
+                    </th> 
+                    <th class="px-6 py-4 font-medium">
+                      name
+                  </th> 
+                  <th class="px-6 py-4 font-medium">
+                    username
+                  </th>
+                  <th class="px-6 py-4 font-medium">
+                    email
+                  </th>
+                  <th class="px-6 py-4 font-medium">
+                    role
+                  </th>                        
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                
+              <tr 
+                *ngFor="let row of dataSource.items | paginate : {
+                  itemsPerPage: dataSource.meta.itemsPerPage,
+                  currentPage: dataSource.meta.currentPage,
+                  totalItems: dataSource.meta.totalItems
+                }" 
+                class="whitespace-nowrap hover:bg-indigo-50"
+                (click)="navigateToProfile(row.id)"
+              >
+                    <td class="px-6 py-4 ">
+                      {{ row.id }}
+                    </td>
+                    <td class="px-6 py-4">                        
+                      {{ row.name }}
+                    </td>
+                    <td class="px-6 py-4">                        
+                      {{ row.username }}                    
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ row.email }}
+                    </td>
+                    <td class="px-6 py-4">
+                      {{ row.role }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
       </div>
-
-      <div 
-        *ngFor="let page of p.pages" 
-        [class.current]="p.getCurrent() === page.value"
-        class="px-1"
-      >
-          <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
-              <span class="text-sm cursor-pointer">{{ page.label }}</span>
-          </a>
-          <div *ngIf="p.getCurrent() === page.value">
-              <span class="text-lg text-indigo-800 cursor-pointer">{{ page.label }}</span>
+      <div class="text-right py-2 flex justify-end">
+        <div class="pl-3 pb-5">
+          <span class="text-sm text-gray-600">page size:</span> 
+          
+          <select (change)="onPageSizeChange($event)" class="text-sm text-gray-600">
+            <option *ngFor="let size of pageSizeOptions">{{ size }}</option>
+          </select>
           </div>
-      </div>
 
-      <div 
-        class="px-2 cursor-pointer text-base font-medium text-indigo-500" 
-        [class.disabled]="p.isLastPage()"
-      >
-          <a *ngIf="!p.isLastPage()" (click)="p.next()"> > </a>
-      </div>
+        <pagination-template 
+          #p="paginationApi"
+          (pageChange)="onPageChange($event)"
+          class="flex justify-end items-baseline"
+        >
 
-      <!-- <div>{{ p.getLastPage() }}</div> -->
-  
-    </pagination-template>
-    
+          <div 
+            class="px-2 cursor-pointer text-base font-medium text-indigo-500" 
+            [class.disabled]="p.isFirstPage()"
+          >
+              <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> < </a>
+          </div>
+
+          <div 
+            *ngFor="let page of p.pages" 
+            [class.current]="p.getCurrent() === page.value"
+            class="px-1"
+          >
+              <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                  <span class="text-sm cursor-pointer">{{ page.label }}</span>
+              </a>
+              <div *ngIf="p.getCurrent() === page.value">
+                  <span class="text-lg text-indigo-800 cursor-pointer">{{ page.label }}</span>
+              </div>
+          </div>
+
+          <div 
+            class="px-2 cursor-pointer text-base font-medium text-indigo-500" 
+            [class.disabled]="p.isLastPage()"
+          >
+              <a *ngIf="!p.isLastPage()" (click)="p.next()"> > </a>
+          </div>
+
+          <!-- <div>{{ p.getLastPage() }}</div> -->
+      
+        </pagination-template>
+        
+      </div>
+    </div>
+
   </div>
+
+  
+
 </div>
 

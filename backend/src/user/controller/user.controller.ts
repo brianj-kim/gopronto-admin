@@ -12,6 +12,7 @@ import {
   UseInterceptors,
   Request,
   Res,
+  Put,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Pagination } from 'nestjs-typeorm-paginate';
@@ -107,7 +108,7 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard, UserIsUserGuard)
   @Patch(':id')
-  updateOne(@Param('id') id: string, @Body() user: User) {
+  updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
     return this.userService.updateOne(Number(id), user);
   }
 
