@@ -1,4 +1,4 @@
-import { Injectable, Options } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   paginate,
@@ -41,7 +41,12 @@ export class UserService {
   }
 
   findOne(id: number): Observable<User> {
-    return from(this.userRepository.findOne({ where: { id: id } })).pipe(
+    return from(
+      this.userRepository.findOne({
+        relations: ['blogEntries'],
+        where: { id: id },
+      }),
+    ).pipe(
       map((user: User) => {
         const { password, ...result } = user;
         return result;

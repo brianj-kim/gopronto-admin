@@ -1,4 +1,4 @@
-import { BlogEntry } from 'src/blog/model/blog-netry.interface';
+import { BlogEntry } from 'src/blog/model/blog-entry.interface';
 
 export interface User {
   id?: number;

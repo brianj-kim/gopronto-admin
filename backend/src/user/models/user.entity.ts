@@ -22,7 +22,7 @@ export class UserEntity {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
@@ -31,10 +31,7 @@ export class UserEntity {
   @Column({ nullable: true })
   profileImage: string;
 
-  @OneToMany(
-    (type) => BlogEntryEntity,
-    (blogEntryEntity) => blogEntryEntity.author,
-  )
+  @OneToMany(() => BlogEntryEntity, (blogEntryEntity) => blogEntryEntity.author)
   blogEntries: BlogEntryEntity[];
 
   @BeforeInsert()
