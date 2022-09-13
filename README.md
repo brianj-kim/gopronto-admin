@@ -1,5 +1,6 @@
 # gopronto-admin
-A fullstack restaurant's backoffice web application with NestJS and AngularJS
+This project is for implementing a web application that manages the back office logics for the gopronto restaurant. This is an initiative design project to exam the skill stacks fit in the design requirements for the project. 
+
 
 ## Switch to branch dev to get the latest changes
 
