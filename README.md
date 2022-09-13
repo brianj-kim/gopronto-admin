@@ -1,5 +1,5 @@
 # gopronto-admin
-This project is for implementing a web application of the pronto restaurant's online admin functionalities. Concisely, this is an initial design project whether the skill stacks would fit the design requirements for the project. 
+This project is for implementing a web application of the pronto restaurant's online admin functionalities. Technically, this is an initial design project whether the skill stacks would fit the design requirements for the project. 
 
 
 ## Switch to branch dev to get the latest changes
